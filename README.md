@@ -1,1 +1,3 @@
 # Sistema_Banc-rio_v1
+
+Nesse projeto eu desenvolvi um sistema bancário simples, no qual o usuário pode realizar depósitos, saques e verificar o extrato. Depósitos apenas podem possuir valores positivos, caso o usuário coloque um valor negativo ele repete o código para depositar até ser inserido um valor positivo ou retorna ao menu após tentar três vezes. O sistema possui limites de três saques diários e R$500 e mostra isso ao usuário ao entrar no modo de saque, caso ele tente passar disso retorna automaticamente ao menu. 
