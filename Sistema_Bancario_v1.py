@@ -1,4 +1,6 @@
 #Sistema bancário versão 1
+#Criado por: Samuel Victor Santana Nobre
+
 #Variáveis
 saldo = 10000.00
 saque = -1
