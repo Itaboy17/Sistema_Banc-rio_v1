@@ -18,6 +18,7 @@ menu = '''
     [q] Sair
 =======================
 '''
+pagina = 0
 mensagem = "\nEH U MANIKAS HEHE"
 
 #Estrutura principal
@@ -27,13 +28,20 @@ while True:
     saque = -1
 
     if option == "d": #deposito
-        print(f"\nSaldo Atual: R${saldo:.2f}\n")
-        deposito = float(input("Valor que desejas depositar: R$ "))
+        while deposito <= 0 and pagina < 3:
+            print("=========================================")
+            print("\nInsira um valor positivo para depositar.")
+            deposito = float(input("Valor que desejas depositar: R$ "))
+            pagina += 1
+            if pagina >= 1 and pagina <=3:
+                print(f"\nVocê retornará ao menu após {3-pagina} tentativas.")
+            
 
-        if deposito >= 0:
+        if deposito > 0:
             saldo += deposito
             qntd_depositos += 1
             extrato += f"Depósito {qntd_depositos}: R${deposito:.2f}\n"
+            print("====================================================================================")
             print(f"Depósito de R${deposito:.2f} realizado com sucesso seu saldo agora é de: R${saldo:.2f}")
             print(mensagem)
 
@@ -42,6 +50,7 @@ while True:
 
     elif option == "s": #saque
         while saque < 0:
+            print("=========================================")
             print("\nInsira um valor válido para saque!")
             saque = float(input("Valor: R$"))
 
@@ -52,6 +61,7 @@ while True:
                     saldo -= saque 
                     qntd_saques += 1
                     extrato += f"Saque diário {qntd_saques}: R${saque:.2f}"
+                    print("================================================================================")
                     print(f"\nSaque de R${saque:.2f} realizado com sucesso seu saldo agora é R${saldo:.2f}")
                     print(f"Você realizou {qntd_saques} hoje, lhe restam {LIM_SAQUE_DIARIO - qntd_saques}")
                     print(mensagem)
@@ -61,6 +71,7 @@ while True:
                 print(mensagem)
 
         else:
+            print("=========================================")
             print(f"\nSeu saldo atual é de R${saldo:.2f}")
             print("Você não tem esse saldo para sacar")
 
