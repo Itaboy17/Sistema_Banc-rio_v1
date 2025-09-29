@@ -18,23 +18,27 @@ menu = '''
     [q] Sair
 =======================
 '''
-pagina = 0
+tentativas_saq = 0
+tentativas_dep = 0
 mensagem = "\nEH U MANIKAS HEHE"
 
 #Estrutura principal
 while True:
+    tentativas_saq = 0
+    tentativas_dep = 0
     print(menu)
     option = input("Selecione a opção desejada: ")
     saque = -1
 
     if option == "d": #deposito
-        while deposito <= 0 and pagina < 3:
+        while deposito <= 0 and tentativas_dep < 3:
             print("=========================================")
-            print("\nInsira um valor positivo para depositar.")
             deposito = float(input("Valor que desejas depositar: R$ "))
-            pagina += 1
-            if pagina >= 1 and pagina <=3:
-                print(f"\nVocê retornará ao menu após {3-pagina} tentativas.")
+            tentativas_dep += 1
+
+            if tentativas_dep >= 1 and tentativas_dep < 3:
+                print("\nInsira um valor positivo para depositar.")
+                print(f"\nVocê retornará ao menu após {3-tentativas_dep} tentativas.")
             
 
         if deposito > 0:
@@ -49,10 +53,16 @@ while True:
             print("Insira um valor válido para depósito!")
 
     elif option == "s": #saque
-        while saque < 0:
+        while saque < 0 and tentativas_saq < 3:
             print("=========================================")
-            print("\nInsira um valor válido para saque!")
+            print(f"Você tem {LIM_SAQUE_DIARIO} saques restantes")
+            print(f"Seu limite de saque é R${LIM_VALOR_SAQUE}")
             saque = float(input("Valor: R$"))
+            tentativas_saq += 1
+
+            if tentativas_saq >= 1 and tentativas_saq < 3:
+                print("\nInsira um valor válido para saque!\n")
+                print(f"\nVocê retornará ao menu após {3-tentativas_saq} tentativas.")
 
         if saque <= saldo:
             if qntd_saques < LIM_SAQUE_DIARIO:
